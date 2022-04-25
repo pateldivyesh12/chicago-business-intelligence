@@ -2,9 +2,9 @@ steps:
 # Steps to pull a docker image for pgadmin, push it to container registry and deploy it to cloud run.
 - name: "gcr.io/cloud-builders/docker"
   args: ['pull', 'dpage/pgadmin4']
-- name: "gcr.io/smart-window-348005/docker"
+- name: "gcr.io/cloud-builders/docker"
   args: ['tag', 'dpage/pgadmin4','gcr.io/smart-window-348005/pgadmin']
-- name: "gcr.io/smart-window-348005/docker"
+- name: "gcr.io/cloud-builders/docker"
   args: ['push', 'gcr.io/smart-window-348005/pgadmin']
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -14,7 +14,7 @@ steps:
 # Steps to build a docker image for go-microservice, push it to container registry and deploy it to cloud run.  
 - name: "gcr.io/cloud-builders/docker"
   args: ['build', '-t', 'gcr.io/smart-window-348005/go-microservice','.']
-- name: "gcr.io/smart-window-348005/docker"
+- name: "gcr.io/cloud-builders/docker"
   args: ['push', 'gcr.io/smart-window-348005/go-microservice']
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
