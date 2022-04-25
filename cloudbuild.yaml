@@ -21,6 +21,6 @@ steps:
   entrypoint: gcloud
   args: ['run', 'deploy','go-microservice', '--image','gcr.io/smart-window-348005/go-microservice', '--region','us-central1', '--add-cloudsql-instances', 'smart-window-348005:us-central1:mypostgres','--platform','managed', '--port','8080', '--allow-unauthenticated']
 images:
-- gcr.io/chicago-business-intelligence/go-microservice
-- gcr.io/chicago-business-intelligence/pgadmin
+- gcr.io/smart-window-348005/go-microservice
+- gcr.io/smart-window-348005/pgadmin
 
