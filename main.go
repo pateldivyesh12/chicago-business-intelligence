@@ -186,7 +186,7 @@ func main() {
 	
 	//Option 4
 	//Database application running on Google Cloud Platform. 
-	db_connection := "user=postgres dbname=chicago_business_intelligence password=root host=/cloudsql/smart-window-348005:us-central1:mypostgres sslmode=disable port = 5432"
+	db_connection := "user=postgres dbname=chicago_business_intelligence password=root host=/cloudsql/chicago-business-intelligence:us-central1:mypostgres sslmode=disable port = 5432"
 	
 
 	db, err := sql.Open("postgres", db_connection)
@@ -195,10 +195,7 @@ func main() {
 	}
 	
 	
-	
-        
-	
-	
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 
 	// Test the database connection
 	//err = db.Ping()
@@ -217,15 +214,14 @@ func main() {
 		GetTaxiTrips(db)
 		GetUnemploymentRates(db)
 		GetBuildingPermits(db)
-		port := os.Getenv("PORT")
-		if port == "" {
-			port = "8080"
-		}
-		log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
-		
+
 		// Pull the data once a day
 		// You might need to pull Taxi Trips and COVID data on daily basis
 		// but not the unemployment dataset becasue its dataset doesn't change every day
+		port := os.Getenv("PORT")
+		if port == "" {
+        port = "8080"
+	}
 		time.Sleep(24 * time.Hour)
 	}
 	
